@@ -255,15 +255,12 @@ async def liveness_check() -> Dict[str, str]:
 
 
 # Import and register API routers
-# from app.api import cameras, frames, search, threats, tracking, forensics, admin
+from app.api import cameras, search, threats, tracking
 
-# app.include_router(cameras.router, prefix="/api/v1/cameras", tags=["Cameras"])
-# app.include_router(frames.router, prefix="/api/v1/frames", tags=["Frames"])
-# app.include_router(search.router, prefix="/api/v1/search", tags=["Search"])
-# app.include_router(threats.router, prefix="/api/v1/threats", tags=["Threats"])
-# app.include_router(tracking.router, prefix="/api/v1/tracking", tags=["Tracking"])
-# app.include_router(forensics.router, prefix="/api/v1/forensics", tags=["Forensics"])
-# app.include_router(admin.router, prefix="/api/v1/admin", tags=["Admin"])
+app.include_router(cameras.router, prefix="/api/v1/cameras", tags=["Cameras"])
+app.include_router(search.router, prefix="/api/v1/search", tags=["Search"])
+app.include_router(threats.router, prefix="/api/v1/threats", tags=["Threats"])
+app.include_router(tracking.router, prefix="/api/v1/tracking", tags=["Tracking"])
 
 
 if __name__ == "__main__":
