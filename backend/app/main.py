@@ -56,6 +56,13 @@ async def lifespan(app: FastAPI):
 
         logger.info("All database connections initialized successfully")
 
+        # Start video ingestion service
+        # NOTE: Uncomment when ready to process real camera streams
+        # from app.services.video_ingestion import get_video_ingestion_service
+        # video_service = get_video_ingestion_service()
+        # await video_service.start()
+        # logger.info("Video ingestion service started")
+
     except Exception as e:
         logger.error(f"Failed to initialize databases: {e}")
         raise
@@ -64,6 +71,11 @@ async def lifespan(app: FastAPI):
 
     # Shutdown
     logger.info("Shutting down application...")
+
+    # Stop video ingestion
+    # if video_service:
+    #     await video_service.stop()
+
     await close_database_connections()
     logger.info("Application shutdown complete")
 
@@ -255,12 +267,13 @@ async def liveness_check() -> Dict[str, str]:
 
 
 # Import and register API routers
-from app.api import cameras, search, threats, tracking
+from app.api import cameras, search, threats, tracking, websocket
 
 app.include_router(cameras.router, prefix="/api/v1/cameras", tags=["Cameras"])
 app.include_router(search.router, prefix="/api/v1/search", tags=["Search"])
 app.include_router(threats.router, prefix="/api/v1/threats", tags=["Threats"])
 app.include_router(tracking.router, prefix="/api/v1/tracking", tags=["Tracking"])
+app.include_router(websocket.router, prefix="/api/v1", tags=["WebSocket"])
 
 
 if __name__ == "__main__":
