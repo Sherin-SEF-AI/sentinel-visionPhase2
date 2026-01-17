@@ -1,0 +1,209 @@
+{
+  "version": "1.0.0",
+  "signatures": [
+    {
+      "signature_id": "HS001",
+      "name": "Weapon Brandishing",
+      "description": "Person visibly carrying or displaying a firearm, knife, or weapon",
+      "category": "high_severity",
+      "severity": "critical",
+      "threat_type": "weapon_detection",
+      "trigger_conditions": {
+        "required_entities": ["person", "weapon"],
+        "required_activities": ["holding", "brandishing", "displaying"],
+        "visual_indicators": ["firearm", "knife", "bat", "weapon"]
+      },
+      "confidence_threshold": 0.75,
+      "alert_enabled": true,
+      "alert_priority": "critical",
+      "recommended_actions": ["Immediate security response", "Alert law enforcement", "Activate lockdown procedures"]
+    },
+    {
+      "signature_id": "HS002",
+      "name": "Physical Altercation",
+      "description": "Physical fight or violence between individuals",
+      "category": "high_severity",
+      "severity": "critical",
+      "threat_type": "violence",
+      "trigger_conditions": {
+        "required_entities": ["multiple persons"],
+        "required_activities": ["fighting", "hitting", "aggressive behavior"],
+        "visual_indicators": ["aggressive postures", "physical contact", "rapid movements"]
+      },
+      "confidence_threshold": 0.70,
+      "alert_enabled": true,
+      "alert_priority": "critical",
+      "recommended_actions": ["Dispatch security immediately", "Separate individuals", "Document incident"]
+    },
+    {
+      "signature_id": "HS003",
+      "name": "Medical Emergency",
+      "description": "Person collapsed, injured, or in medical distress",
+      "category": "high_severity",
+      "severity": "critical",
+      "threat_type": "medical_emergency",
+      "trigger_conditions": {
+        "required_entities": ["person"],
+        "required_activities": ["collapsed", "lying down", "injured"],
+        "visual_indicators": ["person on ground", "motionless", "assistance needed"]
+      },
+      "confidence_threshold": 0.70,
+      "alert_enabled": true,
+      "alert_priority": "critical",
+      "recommended_actions": ["Call medical services", "Dispatch first aid", "Clear area for responders"]
+    },
+    {
+      "signature_id": "HS004",
+      "name": "Fire or Smoke Detection",
+      "description": "Visible fire, smoke, or signs of fire emergency",
+      "category": "high_severity",
+      "severity": "critical",
+      "threat_type": "fire_emergency",
+      "trigger_conditions": {
+        "required_entities": ["smoke", "fire", "flames"],
+        "visual_indicators": ["smoke plumes", "visible flames", "haze"]
+      },
+      "confidence_threshold": 0.75,
+      "alert_enabled": true,
+      "alert_priority": "critical",
+      "recommended_actions": ["Activate fire alarm", "Call fire department", "Begin evacuation", "Close fire doors"]
+    },
+    {
+      "signature_id": "HS005",
+      "name": "Forced Entry Attempt",
+      "description": "Person attempting to force entry through locked door or barrier",
+      "category": "high_severity",
+      "severity": "high",
+      "threat_type": "forced_entry",
+      "trigger_conditions": {
+        "required_entities": ["person", "door", "barrier"],
+        "required_activities": ["forcing", "prying", "breaking"],
+        "visual_indicators": ["tool usage", "aggressive door contact", "repeated attempts"]
+      },
+      "confidence_threshold": 0.70,
+      "alert_enabled": true,
+      "alert_priority": "high",
+      "recommended_actions": ["Alert security", "Monitor closely", "Prepare for response"]
+    },
+    {
+      "signature_id": "PC001",
+      "name": "Unauthorized Perimeter Access",
+      "description": "Person accessing restricted perimeter area",
+      "category": "perimeter_control",
+      "severity": "high",
+      "threat_type": "unauthorized_access",
+      "trigger_conditions": {
+        "required_entities": ["person"],
+        "required_context": {"location_types": ["perimeter", "fence", "boundary"], "access_level": "restricted"},
+        "required_activities": ["climbing", "crossing", "entering"]
+      },
+      "confidence_threshold": 0.65,
+      "alert_enabled": true,
+      "alert_priority": "high",
+      "recommended_actions": ["Dispatch security", "Challenge individual", "Verify authorization"]
+    },
+    {
+      "signature_id": "PC002",
+      "name": "Loitering at Perimeter",
+      "description": "Person loitering near facility perimeter for extended period",
+      "category": "perimeter_control",
+      "severity": "medium",
+      "threat_type": "suspicious_behavior",
+      "trigger_conditions": {
+        "required_entities": ["person"],
+        "required_context": {"location_types": ["perimeter", "fence", "boundary"]},
+        "required_activities": ["standing", "loitering", "observing"],
+        "temporal_requirements": "Duration > 5 minutes"
+      },
+      "confidence_threshold": 0.60,
+      "temporal_window_seconds": 300,
+      "alert_enabled": true,
+      "alert_priority": "medium",
+      "recommended_actions": ["Monitor activity", "Dispatch patrol", "Document behavior"]
+    },
+    {
+      "signature_id": "PC003",
+      "name": "Fence Climbing",
+      "description": "Person climbing or attempting to climb perimeter fence",
+      "category": "perimeter_control",
+      "severity": "critical",
+      "threat_type": "perimeter_breach",
+      "trigger_conditions": {
+        "required_entities": ["person", "fence"],
+        "required_activities": ["climbing"],
+        "visual_indicators": ["person on fence", "scaling attempt"]
+      },
+      "confidence_threshold": 0.75,
+      "alert_enabled": true,
+      "alert_priority": "critical",
+      "recommended_actions": ["Immediate security response", "Challenge individual", "Secure perimeter"]
+    },
+    {
+      "signature_id": "PC004",
+      "name": "Vehicle at Perimeter",
+      "description": "Unauthorized vehicle parked near perimeter",
+      "category": "perimeter_control",
+      "severity": "medium",
+      "threat_type": "suspicious_vehicle",
+      "trigger_conditions": {
+        "required_entities": ["vehicle"],
+        "required_context": {"location_types": ["perimeter", "boundary"]},
+        "required_activities": ["parked", "stationary"]
+      },
+      "confidence_threshold": 0.60,
+      "alert_enabled": true,
+      "alert_priority": "medium",
+      "recommended_actions": ["Investigate vehicle", "Check license plate", "Monitor occupants"]
+    },
+    {
+      "signature_id": "HS001",
+      "name": "Slip and Fall",
+      "description": "Person slipping, falling, or injured",
+      "category": "health_safety",
+      "severity": "high",
+      "threat_type": "safety_incident",
+      "trigger_conditions": {
+        "required_entities": ["person"],
+        "required_activities": ["falling", "slipping", "on ground"],
+        "visual_indicators": ["person falling", "sudden movement to ground", "lying down unexpectedly"]
+      },
+      "confidence_threshold": 0.65,
+      "alert_enabled": true,
+      "alert_priority": "high",
+      "recommended_actions": ["Check on individual", "Provide assistance", "Document incident", "Call medical if needed"]
+    },
+    {
+      "signature_id": "HS002",
+      "name": "Spill or Hazard",
+      "description": "Liquid spill or safety hazard on floor",
+      "category": "health_safety",
+      "severity": "medium",
+      "threat_type": "safety_hazard",
+      "trigger_conditions": {
+        "required_entities": ["spill", "liquid", "debris"],
+        "visual_indicators": ["liquid on floor", "debris", "obstruction"]
+      },
+      "confidence_threshold": 0.60,
+      "alert_enabled": true,
+      "alert_priority": "medium",
+      "recommended_actions": ["Mark hazard area", "Dispatch cleaning crew", "Place warning signs"]
+    },
+    {
+      "signature_id": "HS003",
+      "name": "Blocked Emergency Exit",
+      "description": "Emergency exit blocked or obstructed",
+      "category": "health_safety",
+      "severity": "high",
+      "threat_type": "code_violation",
+      "trigger_conditions": {
+        "required_entities": ["exit", "door", "obstruction"],
+        "required_context": {"location_types": ["emergency_exit", "fire_exit"]},
+        "visual_indicators": ["blocked door", "objects in front of exit"]
+      },
+      "confidence_threshold": 0.70,
+      "alert_enabled": true,
+      "alert_priority": "high",
+      "recommended_actions": ["Clear obstruction immediately", "Document violation", "Notify facilities"]
+    }
+  ]
+}
